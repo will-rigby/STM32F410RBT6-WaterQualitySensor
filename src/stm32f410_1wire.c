@@ -25,7 +25,7 @@ extern void oneWire_init(void) {
 	__TIM5_CLK_ENABLE()
 	;
 
-
+	/* Initialise the timer used for counting microseconds */
 	oneWireTimer.Instance = TIM5;
 	oneWireTimer.Init.Prescaler = 80;
 	oneWireTimer.Init.Period = 0xFFFF;
@@ -53,6 +53,7 @@ void delay_us(uint16_t microseconds) {
 		;
 }
 
+/* Function to write a bit to the 1-Wire Device */
 void write_bit(uint8_t bit) {
 
 	/* if 1 hold low for 14us */
@@ -70,6 +71,7 @@ void write_bit(uint8_t bit) {
 	}
 }
 
+/* Function to write a byte to the 1-wire device */
 void onewire_write_byte(uint8_t byte) {
 	for (int i = 0; i < 8; i++) {
 		write_bit(byte & 1);
@@ -77,7 +79,7 @@ void onewire_write_byte(uint8_t byte) {
 	}
 }
 
-/* Read Byte Function */
+/* Read Byte from 1-Wire Device Function */
 uint8_t onewire_read_byte(void) {
 	uint8_t byte = 0;
 	uint8_t bit = 0;
@@ -103,6 +105,7 @@ uint8_t onewire_read_byte(void) {
 	return byte;
 }
 
+/* Reset the 1-Wire Device */
 extern uint8_t onewire_reset(void) {
 	uint8_t output = 1;
 
@@ -129,6 +132,7 @@ extern uint8_t onewire_reset(void) {
 	return output;
 }
 
+/* Read the temperature and return a float from the DS18B20 */
 extern float onewire_read_ds18b20_temp(void) {
 	/* Reset Devices */
 	onewire_reset();
@@ -223,6 +227,7 @@ extern float onewire_read_ds18b20_temp(void) {
 	return temperature;
 }
 
+/* Read the temperature and return 2 integers representing a float */
 extern void onewire_read_ds18b20_temp_int16(int16_t intAndDec[2]) {
 	/* Reset Devices */
 	onewire_reset();
@@ -318,6 +323,7 @@ extern void onewire_read_ds18b20_temp_int16(int16_t intAndDec[2]) {
 
 }
 
+/* 1us Delay on a 8MHz micro-controller using assembly code "No Operation" */
 void delay_1us(void) {
 	asm("NOP");
 	asm("NOP");
@@ -329,6 +335,7 @@ void delay_1us(void) {
 	asm("NOP");
 }
 
+/* 5us Delay on a 8MHz micro-controller using assembly code "No Operation" */
 void delay_5us(void) {
 	asm("NOP");
 	asm("NOP");
@@ -372,6 +379,7 @@ void delay_5us(void) {
 	asm("NOP");
 }
 
+/* 5us Delay on a 8MHz micro-controller using assembly code "No Operation" */
 void delay_10us(void) {
 	asm("NOP");
 	asm("NOP");
@@ -455,6 +463,7 @@ void delay_10us(void) {
 	asm("NOP");
 }
 
+/* 5us Delay on a 8MHz micro-controller using assembly code "No Operation" */
 void delay_100us(void) {
 	asm("NOP");
 	asm("NOP");
@@ -1258,10 +1267,12 @@ void delay_100us(void) {
 	asm("NOP");
 }
 
+/* Sets the pin to input */
 void oneWire_set_pin_input(void) {
 	GPIOA->MODER = ~(0b110000000000000000) & GPIOA->MODER;
 }
 
+/* Sets the pin to output */
 void oneWire_set_pin_output(void) {
 	GPIOA->MODER = (0b010000000000000000) | GPIOA->MODER;
 }

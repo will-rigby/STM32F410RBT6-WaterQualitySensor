@@ -203,12 +203,11 @@ void Hardware_Init(void) {
 	//MX_RTC_Init();
 	stmf410_uart_usart1_init();
 	stmf410_uart_usart2_init();
-	stm32f410_uart_usart1_transmit("BEFORERTC");
 	oneWire_init();
 	sim5320a_init();
 	stm32f410_i2c_bitbang_init();
 	stm32f410_rtc_init();
-	stm32f410_uart_usart1_transmit("AFTERRTC");
+
 
 }
 
@@ -547,11 +546,6 @@ void data_collect_measurement_per_interval(void) {
 			stm32f410_uart_usart1_transmit(messageLength);
 			stm32f410_uart_usart1_transmit("\r\n");
 			HAL_Delay(100);
-			stm32f410_uart_usart1_transmit(serverIPAddress);
-			stm32f410_uart_usart1_transmit("\",");
-			stm32f410_uart_usart1_transmit(serverPort);
-			stm32f410_uart_usart1_transmit("\r\n");
-			HAL_Delay(100);
 
 			stm32f410_uart_usart1_transmit(boardName);
 			stm32f410_uart_usart1_transmit(", ");
@@ -634,6 +628,7 @@ void data_collect_measurement_per_interval(void) {
 	/* On Wake Up */
 	HAL_Init();
 	SystemClock_Config();
+	stm32f410_rtc_exit_stop();
 
 	/*for (uint32_t i; i < calculatedDelayInterval; i++) {
 	 HAL_Delay(1000);
@@ -642,7 +637,7 @@ void data_collect_measurement_per_interval(void) {
 
 void data_capture_and_transmission(void) {
 
-	if (1) {
+	while (1) {
 		data_collect_measurement_per_interval();
 	}
 }

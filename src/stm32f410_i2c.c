@@ -153,6 +153,8 @@ extern void stm32f410_i2c_read_bytes(uint8_t address, uint8_t* reg,
 }
 
 extern void stm32f410_i2c_bitbang_init(void) {
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+
 	FMPI2C1->CR1 &= ~(1);
 	GPIOB->MODER |= (1 << 28); // Set Mode to Output
 	GPIOB->MODER &= ~(1 << 29); // Set Mode to Output
@@ -197,10 +199,17 @@ uint8_t read_SCL(void) {
 }
 
 uint8_t read_SDA(void) {
+	/*
+	uint16_t val = (GPIOB->IDR & (1 << 14)) >> 14;
+	uint8_t returnVal = (uint8_t) val; */
+	uint32_t val = GPIOB->IDR;
+	if(val&(1<<14)){
+		return (uint8_t) 1;
+	} else {
+		return (uint8_t) 0;
+	}
 
-	uint8_t returnVal = (uint8_t) (GPIOB->IDR & (1 << 14)) >> 14;
-
-	return returnVal;
+	//return returnVal;
 }
 
 void i2c_start_cond(void) {
@@ -251,7 +260,7 @@ void i2c_write_bit(uint8_t bit) {
 uint8_t i2c_read_bit(void) {
 	uint8_t bit;
 
-	set_SDA_high(); // OD Allow Slave to Drive
+	//set_SDA_high(); // OD Allow Slave to Drive
 	i2c_delay();
 	set_SCL_high();
 	i2c_delay();
@@ -279,8 +288,9 @@ extern uint8_t stm32f410_i2c_bitbang_write_byte(uint8_t byte, uint8_t sendStart,
 
 extern uint8_t stm32f410_i2c_bitbang_read_byte(uint8_t nack, uint8_t sendStop) {
 	uint8_t byte;
-	GPIOB->MODER &= ~(1 << 28);
-	GPIOB->MODER &= ~(1 << 29);
+
+	//                 141312111099887766554433221100
+	GPIOB->MODER = ~(0b110000000000000000000000000000) & GPIOB->MODER;
 	for (int bit = 0; bit < 8; ++bit) {
 		byte = (byte << 1) | i2c_read_bit();
 	}

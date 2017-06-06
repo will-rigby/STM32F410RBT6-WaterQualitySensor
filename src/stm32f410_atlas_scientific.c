@@ -27,7 +27,7 @@ extern void stm32f410_as_read_pH(char* buffer, uint8_t bufferLength) {
 	stm32f410_i2c_bitbang_write_bytes(0x63, &read, 1);
 	HAL_Delay(1200);
 	stm32f410_i2c_bitbang_read_bytes(0x63, (uint8_t*) buffer, bufferLength);
-	for (uint8_t i; i < bufferLength - 1; i++) {
+	for (uint8_t i = 0; i < bufferLength - 1; i++) {
 		buffer[i] = buffer[i + 1];
 	}
 }
@@ -37,7 +37,7 @@ extern void stm32f410_as_read_conductivity(char* buffer, uint8_t bufferLength) {
 	stm32f410_i2c_bitbang_write_bytes(0x63, &read, 1);
 	HAL_Delay(1200);
 	stm32f410_i2c_bitbang_read_bytes(0x63, (uint8_t*) buffer, bufferLength);
-	for (uint8_t i; i < bufferLength - 1; i++) {
+	for (uint8_t i = 0; i < bufferLength - 1; i++) {
 		buffer[i] = buffer[i + 1];
 	}
 

@@ -19,6 +19,7 @@
 extern void stm32f410_rtc_init(void);
 extern void stm32f410_rtc_program_wakeup(uint16_t delay);
 extern void stm32f410_rtc_enter_stop(void);
+extern void stm32f410_rtc_exit_stop(void);
 
 
 
