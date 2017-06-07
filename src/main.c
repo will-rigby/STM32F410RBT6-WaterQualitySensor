@@ -35,7 +35,7 @@ char serverPort[6]; //"4523" "2727"
 char accessPoint[21]; // telstra.wap "NXTGENPHONE
 char mobileNumber[13]; // = "+61423037656"; "+17577752179"
 char boardName[21]; //"UQ Board 1" "RIGBI"
-uint16_t delayTime = 60; // Interval in seconds between messages
+int32_t delayTime = 15; // Interval in seconds between messages
 uint8_t tcpEnabled = 1; // Enables sending data over TCP
 uint8_t dataCollectionMode = 0; // Specifies Collection Mode 0 = 1 sample per interval
 uint8_t sendDataOverSMS = 0; // Send the data over SMS as well
@@ -84,19 +84,186 @@ int main(void) {
 	/* Initialize all configured peripherals */
 	Hardware_Init();
 
-
 	/* Set Default Values */
 	sprintf(boardName, "UQ Board 1");
 	sprintf(serverIPAddress, "125.168.189.226");
 	sprintf(serverPort, "4523");
 	sprintf(accessPoint, "telstra.wap");
+	delayTime = 15;
 
 	/* Data Collection Loop */
 	while (1) {
 
-		data_capture_and_transmission();
-	}
+		/* Restart all Peripherals */
+		uint32_t startTime = HAL_GetTick();
 
+		stm32f410_uart_usart2_transmit("BEGINNING TRANSMISSION\r\n");
+		/* Turn on the SIM5320a  */
+		sim5320a_power_on();
+
+		/* Turn on the SIM5320a  */
+		if (sim5320a_activate() == 0) {
+
+			sim5320a_activate_sms();
+			char messageBank[5][200];
+			uint8_t numberOfMessages = sim5320a_check_sms_messages(messageBank);
+			process_message_bank(messageBank, numberOfMessages);
+			sim5320a_set_default_parameters(accessPoint, serverPort,
+					serverIPAddress);
+
+			/* Get data */
+			char pH[20]; //read_ph_adc();
+			stm32f410_as_read_pH(pH, 10);
+
+			char conductivity[20]; //read_conductivity_adc();
+			stm32f410_as_read_conductivity(conductivity, 10);
+			uint8_t ph0 = 1;
+			uint8_t cond0 = 1;
+			for (int i = 0; i < 10; i++) {
+				if (pH[i] != 0) {
+					ph0 = 0;
+				}
+				if (conductivity[0] != 0) {
+					cond0 = 0;
+				}
+			}
+			if (cond0) {
+				conductivity[0] = '0';
+			}
+			if (ph0) {
+				pH[0] = '0';
+			}
+
+			uint16_t ultrasonic = read_ultrasonic_adc();
+			char ultrasonicString[6];
+			getDecStr(ultrasonicString, 6, ultrasonic);
+
+			int16_t temperature[2];
+			char temperatureString[2][10];
+			onewire_read_ds18b20_temp_int16(temperature);
+			getDecStr(temperatureString[0], 10, temperature[0]);
+			getDecStr(temperatureString[1], 10, temperature[1]);
+
+			uint8_t signalQuality = sim5320a_signal_quality();
+			char sigQual[5];
+			getDecStr(sigQual, 5, signalQuality);
+
+			uint8_t batteryStatus = sim5320a_battery_percent();
+			char batStat[5];
+			getDecStr(batStat, 5, batteryStatus);
+
+			/* Message = BOARDNAME, DATACOLLECTIONNUMBER, TEMP1.TEMP2, conductivity, pH, range, bat, sig		 */
+			/*                    12                    34    56            78  91     12   34   56 */
+			/* Format and send data over TCP*/
+			/* Create Message */
+			char dataCollectionNumberString[6];
+			getDecStr(dataCollectionNumberString, 6, dataCollectionNumber);
+
+			uint16_t dataLength = 16; // ,' ' and \r\n and . in temp
+			dataLength += low_mem_string_length(boardName);
+			dataLength += low_mem_string_length(dataCollectionNumberString);
+			dataLength += low_mem_string_length(temperatureString[0]);
+			dataLength += low_mem_string_length(temperatureString[1]);
+			dataLength += low_mem_string_length(conductivity);
+			dataLength += low_mem_string_length(pH);
+			dataLength += low_mem_string_length(ultrasonicString);
+			dataLength += low_mem_string_length(sigQual);
+			dataLength += low_mem_string_length(batStat);
+
+			if (connect_to_tcp() == 0) {
+
+				/* Send Actual Message */
+				char messageLength[5]; // length of data
+				getDecStr(messageLength, 5, dataLength);
+
+				stm32f410_uart_usart1_transmit("AT+CIPSEND=0,");
+				stm32f410_uart_usart1_transmit(messageLength);
+				stm32f410_uart_usart1_transmit("\r\n");
+				HAL_Delay(100);
+
+				stm32f410_uart_usart1_transmit(boardName);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(dataCollectionNumberString);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(temperatureString[0]);
+				stm32f410_uart_usart1_transmit(".");
+				stm32f410_uart_usart1_transmit(temperatureString[1]);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(conductivity);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(pH);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(ultrasonicString);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(sigQual);
+				stm32f410_uart_usart1_transmit(", ");
+
+				stm32f410_uart_usart1_transmit(batStat);
+				stm32f410_uart_usart1_transmit("\r\n");
+
+				HAL_Delay(500);
+
+				char messageFromTCPServer[80];
+				HAL_Delay(10000); // Wait seconds for a reply
+
+				/* Get any messages from TCP Server if there are any */
+				stm32f410_uart_get_usart1_reply(messageFromTCPServer, 80);
+				process_tcp_commands(messageFromTCPServer);
+
+				/* Close the TCP Server connection */
+				close_connection();
+
+			}
+			dataCollectionNumber++;
+		} else {
+			/* Error */
+			stm32f410_uart_usart2_transmit("Connect Failed.");
+			for (int i = 0; i < 10; i++) {
+				fault_indicator_on();
+				HAL_Delay(200);
+				fault_indicator_off();
+				HAL_Delay(200);
+				fault_indicator_on();
+				HAL_Delay(200);
+				fault_indicator_off();
+				HAL_Delay(800);
+			}
+		}
+		sim5320a_power_off();
+
+		stm32f410_uart_usart2_transmit("Transmission Completed\r\n");
+		char debug[20];
+		getDecStr(debug, 20, delayTime);
+		stm32f410_uart_usart2_transmit(debug);
+
+
+		/* Disable all peripherals and sleep */
+		//HAL_ADC_DeInit(&rangeFinderAdc);
+		stm32f410_as_pH_sleep();
+		stm32f410_as_conductivity_sleep();
+		for (int32_t i = 0; i < delayTime; i++) {
+			HAL_Delay(1000);
+		}
+
+		/* Enter Sleep *//*
+		 stm32f410_rtc_program_wakeup((uint16_t) calculatedDelayInterval);
+		 stm32f410_rtc_enter_stop();*/
+
+		/* On Wake Up */
+		//HAL_Init();
+		//SystemClock_Config();
+		//stm32f410_rtc_exit_stop();
+		//Hardware_Init();
+		stm32f410_uart_usart2_transmit("Transmission Completed\r\n");
+
+
+	}
 }
 
 /** System Clock Configuration
@@ -207,7 +374,6 @@ void Hardware_Init(void) {
 	sim5320a_init();
 	stm32f410_i2c_bitbang_init();
 	stm32f410_rtc_init();
-
 
 }
 
@@ -462,8 +628,7 @@ void data_collect_measurement_per_interval(void) {
 	/* Restart all Peripherals */
 	uint32_t startTime = HAL_GetTick();
 
-	Hardware_Init();
-
+	stm32f410_uart_usart2_transmit("BEGINNING TRANSMISSION\r\n");
 	/* Turn on the SIM5320a  */
 	sim5320a_power_on();
 
@@ -589,7 +754,7 @@ void data_collect_measurement_per_interval(void) {
 		dataCollectionNumber++;
 	} else {
 		/* Error */
-		stm32f410_uart_usart1_transmit("Connect Failed.");
+		stm32f410_uart_usart2_transmit("Connect Failed.");
 		for (int i = 0; i < 10; i++) {
 			fault_indicator_on();
 			HAL_Delay(200);
@@ -603,36 +768,32 @@ void data_collect_measurement_per_interval(void) {
 	}
 	sim5320a_power_off();
 
-	/* Disable all peripherals and sleep */
-	HAL_ADC_DeInit(&rangeFinderAdc);
-	stm32f410_as_pH_sleep();
-	stm32f410_as_conductivity_sleep();
+	uint32_t measurementTime = (HAL_GetTick() - startTime) / 1000;
+	stm32f410_uart_usart2_transmit("Transmission Completed\r\n");
 
-	/* Calculate Delay (if reading takes 30 seconds, and interval is 60 seconds, sleep for 30 seconds) */
-	uint32_t calculatedDelayInterval = delayTime
-			- (HAL_GetTick() - startTime) / 1000;
+	if (measurementTime < delayTime) {
 
-	/* Ensure Delay Does not Exceed 60 minutes */
-	if (calculatedDelayInterval > 3600) {
-		calculatedDelayInterval = 60;
+		/* Disable all peripherals and sleep */
+		HAL_ADC_DeInit(&rangeFinderAdc);
+		stm32f410_as_pH_sleep();
+		stm32f410_as_conductivity_sleep();
+		for (int i = 0; i < delayTime; i++) {
+			HAL_Delay(1000);
+		}
+
+		/* Enter Sleep *//*
+		 stm32f410_rtc_program_wakeup((uint16_t) calculatedDelayInterval);
+		 stm32f410_rtc_enter_stop();*/
+
+		/* On Wake Up */
+		//HAL_Init();
+		//SystemClock_Config();
+		//stm32f410_rtc_exit_stop();
+		Hardware_Init();
+
+	} else {
+		HAL_Delay(1000);
 	}
-
-	char sleepTime[10];
-	getDecStr(sleepTime, 10, calculatedDelayInterval);
-	stm32f410_uart_usart1_transmit(sleepTime);
-
-	/* Enter Sleep */
-	stm32f410_rtc_program_wakeup((uint16_t) calculatedDelayInterval);
-	stm32f410_rtc_enter_stop();
-
-	/* On Wake Up */
-	HAL_Init();
-	SystemClock_Config();
-	stm32f410_rtc_exit_stop();
-
-	/*for (uint32_t i; i < calculatedDelayInterval; i++) {
-	 HAL_Delay(1000);
-	 }*/
 }
 
 void data_capture_and_transmission(void) {

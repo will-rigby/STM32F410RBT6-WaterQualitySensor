@@ -311,7 +311,7 @@ extern void stm32f410_i2c_bitbang_write_bytes(uint8_t address,
 	uint i = 0;
 	for (i = 0; i < numberOfBytes - 1; i++) {
 		if (stm32f410_i2c_bitbang_write_byte(byteBuffer[i], 0, 0)) {
-			break;
+			//break;
 		}
 	}
 	stm32f410_i2c_bitbang_write_byte(byteBuffer[i], 0, 1);

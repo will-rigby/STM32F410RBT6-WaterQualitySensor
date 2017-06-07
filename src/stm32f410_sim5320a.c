@@ -49,8 +49,6 @@ extern uint8_t sim5320a_check_status(void) {
 
 	HAL_Delay(50);
 	stm32f410_uart_get_usart1_reply(reply, replyLength);
-	stm32f410_uart_usart1_transmit("Reply:");
-	stm32f410_uart_usart1_transmit(reply);
 	for (uint i = 0; i < (replyLength - 4); i++) {
 		if (reply[i] == '\r' && reply[i+1] == '\n' && reply[i+2] == 'O'
 				&& reply[i+3] == 'K') {
@@ -306,14 +304,15 @@ extern uint8_t sim5320a_close_tcpudp_connection(void) {
 }
 
 extern void sim5320a_power_off(void) {
+	/*
 	uint16_t tick = HAL_GetTick() + 1000;
 	uint8_t status = 0;
 	while (HAL_GetTick() < tick) {
 		status = status | HAL_GPIO_ReadPin(NETSTATUS_GPIO_Port,
 		NETSTATUS_GPIO_PIN);
-	}
+	}*/
 
-	if (status) {
+	if (1) {
 		HAL_GPIO_WritePin(PWR_CTRL_GPIO_Port, PWR_CTRL_Pin, 0);
 		HAL_Delay(1000);
 		HAL_GPIO_WritePin(PWR_CTRL_GPIO_Port, PWR_CTRL_Pin, 1);
@@ -325,14 +324,16 @@ extern void sim5320a_power_on(void) {
 	HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, 1);
 	uint16_t tick = HAL_GetTick() + 1000;
 	uint8_t status = 0;
+	/*
 	while (HAL_GetTick() < tick) {
 		status = status | HAL_GPIO_ReadPin(NETSTATUS_GPIO_Port,
 		NETSTATUS_GPIO_PIN);
 	}
+	*/
 
 	if (status == 0) {
 		HAL_GPIO_WritePin(PWR_CTRL_GPIO_Port, PWR_CTRL_Pin, 0);
-		HAL_Delay(1000);
+		HAL_Delay(180);
 		HAL_GPIO_WritePin(PWR_CTRL_GPIO_Port, PWR_CTRL_Pin, 1);
 	}
 }
