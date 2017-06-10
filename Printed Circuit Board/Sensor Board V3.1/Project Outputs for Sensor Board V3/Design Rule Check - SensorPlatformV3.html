@@ -1,0 +1,408 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">23/04/2017</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8:01:42 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc" class="file"><acronym title="C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc">C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">2</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">18</td></tr>
+</table>
+</td>
+</table><a name="IDTBLDQVUVWHB0OPNUCBLJE1KAAIGH4CVL2NOJ21FNT31KEQHMRDIM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVAFCWNZ2SOA4K5SV1ILWYWNYEMQRQDKW3JNX4NKO0XLWNSTZO3R">Multilayer Pads with 0 size Hole found</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">2</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUBIYIMU5JDQDJL5WK1ZPMQQ02NG3WLJ2O1YKIIOBP4MXA50JWQTO">Matched Lengths(Tolerance=150mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTSABLJTTFZBOJWXDIMGMW2HLFG1JZDQWVPAAAPJWIVHYAT324ZLP">Room SensorPlatformV3 (Bounding Region = (2270mil, 860mil, 6280mil, 2860mil) (InComponentClass('SensorPlatformV3'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG2GWX3NL2WQENA15H25REDL3AI34KDZXYXSIXGKK0PRO341IW5CB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDH34AIXAQ4WQJIVGOFPQKDYP5FNVAOUSTDM4ELHNEWHDWD3FD0HZE">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMZJ2KFZTSL5DNES5LBAVRXTXGBNYEGAAUKO0GWKXK23D3OJYNSUB">Silk to Silk (Clearance=1mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSH4TWAWQ3BHYDDIIMYB0TFXZQKRHBDTM5FBIUVN2UVIBAEHZ0IEE">Silk To Solder Mask (Clearance=1mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPGZNTUORRNCEJ0RF52HT3E3QKPWOG1PWMLQRBICRDN5WRPSJGQRK">Minimum Solder Mask Sliver (Gap=1mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVUS34CHRAS0EY1PPH3WFBEJ5MO1EFGV3DSHDVLO4UIGHM3UAT3B">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0RYV0CDQY3OVBAIMTENFLYNPOIOE30SWHD2URMJYA5T0HGDBJFM">Hole Size Constraint (Min=12mil) (Max=400mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTADCLSXVM0LOJCT35TNFLOKCRJEGSH1V3TCCK0K1F4ENGZYU5TMF">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFGI50D2P13YGFWEQ0FBIBKKPHCZAILBEA4UWVHIYIJZ2PB0EZ4KJ">Width Constraint (Min=6mil) (Max=120mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEN0CRY0LESDEJOLU3MKDUAXG3GRIGV0K2GOD5AM1SNG2BH0A4TBL">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=20mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWYFUZEFDPSVMGSQJKAR5NLY55DR1XRZDNN1DJGJWFZO3S2MKVUKF">Clearance Constraint (Gap=8mil) (All),(All)</a></td>
+<td class="column2">14</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZHTN5F1WQWHQDFLDW0W0ZATOLCQCE4ITMZAWXRGM4WLOLTG1KATP">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHOTJQQY0BUQEGXKX0W5VBKAPNIN0MVET4ZODDUHHRUTSVG3ULGJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">18</td>
+</tr>
+</table><br><a name="ID4YC1CJ31OFQDP1KTXFNTKIPQYBFV2YM3GDOFQJKKUTUO2S3YC53J"><h2>Warnings</h2></a><a name="IDVAFCWNZ2SOA4K5SV1ILWYWNYEMQRQDKW3JNX4NKO0XLWNSTZO3R"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Multilayer Pads with 0 size Hole found</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5677.85mil|Location2.X=5764.591mil|Location1.Y=1086.551mil|Location2.Y=1152.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5677.85mil|Location2.X=5764.591mil|Location1.Y=1086.551mil|Location2.Y=1152.031mil|Absolute=True">Pad USB1-Mount(3411.22mil,184.291mil) on Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5455.409mil|Location2.X=5542.15mil|Location1.Y=1086.551mil|Location2.Y=1152.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5455.409mil|Location2.X=5542.15mil|Location1.Y=1086.551mil|Location2.Y=1152.031mil|Absolute=True">Pad USB1-Mount(3188.78mil,184.291mil) on Multi-Layer</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWYFUZEFDPSVMGSQJKAR5NLY55DR1XRZDNN1DJGJWFZO3S2MKVUKF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=8mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.391mil|Location2.X=5918.641mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5909.391mil|Location2.X=5918.641mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-20(3604.016mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.021mil|Location2.X=5879.271mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5870.021mil|Location2.X=5879.271mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-19(3564.646mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5830.651mil|Location2.X=5839.901mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5830.651mil|Location2.X=5839.901mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-18(3525.276mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5791.28mil|Location2.X=5800.53mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5791.28mil|Location2.X=5800.53mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-17(3485.905mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5673.17mil|Location2.X=5682.42mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5673.17mil|Location2.X=5682.42mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-14(3367.795mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.8mil|Location2.X=5643.05mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.8mil|Location2.X=5643.05mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-13(3328.425mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5594.43mil|Location2.X=5603.68mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5594.43mil|Location2.X=5603.68mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-12(3289.055mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5555.06mil|Location2.X=5564.31mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5555.06mil|Location2.X=5564.31mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-11(3249.685mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5161.359mil|Location2.X=5170.609mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5161.359mil|Location2.X=5170.609mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-1(2855.984mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5200.729mil|Location2.X=5209.979mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5200.729mil|Location2.X=5209.979mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-2(2895.354mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5240.099mil|Location2.X=5249.349mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5240.099mil|Location2.X=5249.349mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-3(2934.724mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5279.47mil|Location2.X=5288.72mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5279.47mil|Location2.X=5288.72mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-4(2974.095mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.84mil|Location2.X=5328.09mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.84mil|Location2.X=5328.09mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-5(3013.465mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5515.69mil|Location2.X=5524.94mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5515.69mil|Location2.X=5524.94mil|Location1.Y=1276.615mil|Location2.Y=1285.865mil|Absolute=True">Clearance Constraint: (4.843mil &lt; 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-10(3210.315mil,304.449mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHOTJQQY0BUQEGXKX0W5VBKAPNIN0MVET4ZODDUHHRUTSVG3ULGJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5670.502mil|Location2.X=5740.557mil|Location1.Y=1084.264mil|Location2.Y=1154.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5670.502mil|Location2.X=5740.557mil|Location1.Y=1084.264mil|Location2.Y=1154.319mil|Absolute=True">Short-Circuit Constraint: Between Pad USB1-Mount(3395.472mil,184.291mil) on Multi-Layer And Pad USB1-Mount(3411.22mil,184.291mil) on Multi-Layer Location : [X = 5705.529mil][Y = 1119.291mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5479.443mil|Location2.X=5549.498mil|Location1.Y=1084.264mil|Location2.Y=1154.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5479.443mil|Location2.X=5549.498mil|Location1.Y=1084.264mil|Location2.Y=1154.319mil|Absolute=True">Short-Circuit Constraint: Between Pad USB1-Mount(3204.528mil,184.291mil) on Multi-Layer And Pad USB1-Mount(3188.78mil,184.291mil) on Multi-Layer Location : [X = 5514.47mil][Y = 1119.291mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.074mil|Location2.X=5543.359mil|Location1.Y=959.357mil|Location2.Y=1040.643mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5462.074mil|Location2.X=5543.359mil|Location1.Y=959.357mil|Location2.Y=1040.643mil|Absolute=True">Short-Circuit Constraint: Between Pad USB1-Mount(3192.716mil,65mil) on Top Layer And Pad USB1-Mount(3192.716mil,65mil) on Multi-Layer Location : [X = 5502.717mil][Y = 1000mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.641mil|Location2.X=5757.926mil|Location1.Y=959.357mil|Location2.Y=1040.643mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.641mil|Location2.X=5757.926mil|Location1.Y=959.357mil|Location2.Y=1040.643mil|Absolute=True">Short-Circuit Constraint: Between Pad USB1-Mount(3407.284mil,65mil) on Top Layer And Pad USB1-Mount(3407.284mil,65mil) on Multi-Layer Location : [X = 5717.283mil][Y = 1000mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

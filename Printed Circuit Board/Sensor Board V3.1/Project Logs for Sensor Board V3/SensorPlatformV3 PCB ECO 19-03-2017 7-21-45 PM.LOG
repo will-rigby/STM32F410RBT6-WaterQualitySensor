@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=PWRSTAT_SM Pin=U8-5
+Removed Pin From Net: NetName=PWRSTAT_STM Pin=U8-6
+Removed Pin From Net: NetName=RI_STM Pin=U8-8
+Removed Pin From Net: NetName=RI_SM Pin=U8-9
+Added Pin To Net: NetName=RI_SM Pin=U8-5
+Added Pin To Net: NetName=RI_STM Pin=U8-6
+Added Pin To Net: NetName=PWRSTAT_STM Pin=U8-8
+Added Pin To Net: NetName=PWRSTAT_SM Pin=U8-9

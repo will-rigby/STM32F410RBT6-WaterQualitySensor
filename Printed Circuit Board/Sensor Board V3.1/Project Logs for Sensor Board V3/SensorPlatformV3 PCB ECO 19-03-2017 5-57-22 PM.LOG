@@ -1,0 +1,63 @@
+Change Physical Footprint: Designator=BT1 Old Footprint=BAT-2 New Footprint=BAT-2
+Change Physical Footprint: Designator=C1 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C2 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C3 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C4 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C5 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C6 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C7 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C8 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C9 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C10 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C11 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C12 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C13 Old Footprint=CAPAE9983X105M New Footprint=CAPAE9983X105M
+Change Physical Footprint: Designator=C14 Old Footprint=CAPAE9983X105M New Footprint=CAPAE9983X105M
+Change Physical Footprint: Designator=C15 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C16 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=C17 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=D1 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=D2 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=D3 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=D4 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=D5 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=P1 Old Footprint=HDR1X5 New Footprint=HDR1X5
+Change Physical Footprint: Designator=P2 Old Footprint=BNC Connector New Footprint=BNC Connector
+Change Physical Footprint: Designator=P3 Old Footprint=BNC Connector New Footprint=BNC Connector
+Change Physical Footprint: Designator=Q1 Old Footprint=SOT95P245X110-3N New Footprint=SOT95P245X110-3N
+Change Physical Footprint: Designator=Q2 Old Footprint=SOT95P245X110-3N New Footprint=SOT95P245X110-3N
+Change Physical Footprint: Designator=Q3 Old Footprint=SOT95P245X110-3N New Footprint=SOT95P245X110-3N
+Change Physical Footprint: Designator=Q4 Old Footprint=SOT95P245X110-3N New Footprint=SOT95P245X110-3N
+Change Physical Footprint: Designator=Q5 Old Footprint=SOT95P245X110-3N New Footprint=SOT95P245X110-3N
+Change Physical Footprint: Designator=R1 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R2 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R3 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R4 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R5 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R6 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R7 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R8 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R9 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R10 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R11 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R12 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R13 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R14 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R15 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R16 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R17 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R18 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R19 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=R20 Old Footprint=1608[0603] New Footprint=1608[0603]
+Change Physical Footprint: Designator=U1 Old Footprint=SIM5320A New Footprint=SIM5320A
+Change Physical Footprint: Designator=U2 Old Footprint=STM32F410RBT6 New Footprint=STM32F410RBT6
+Change Physical Footprint: Designator=U3 Old Footprint=SOT-23-OT5_N New Footprint=SOT-23-OT5_N
+Change Physical Footprint: Designator=U4 Old Footprint=MP04A_N New Footprint=MP04A_N
+Change Physical Footprint: Designator=U5 Old Footprint=ONSC-SC70-6-419B-02_W_V New Footprint=ONSC-SC70-6-419B-02_W_V
+Change Physical Footprint: Designator=U6 Old Footprint=EZO Conductivity New Footprint=EZO Conductivity
+Change Physical Footprint: Designator=U7 Old Footprint=EZO pH New Footprint=EZO pH
+Change Physical Footprint: Designator=USB1 Old Footprint=USB Micro B Connector New Footprint=USB Micro B Connector
+Change Physical Footprint: Designator=X1 Old Footprint=UFL Connector New Footprint=UFL Connector
+Change Physical Footprint: Designator=X2 Old Footprint=UFL Connector New Footprint=UFL Connector
+Change Physical Footprint: Designator=X3 Old Footprint=Sim Card New Footprint=Sim Card
+Change Physical Footprint: Designator=Y1 Old Footprint=16MHz Clock New Footprint=16MHz Clock

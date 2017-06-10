@@ -1,0 +1,88 @@
+Removed Pin From Net: NetName=VBAT Pin=R11-1
+Removed Pin From Net: NetName=NETSTAT_SIM Pin=R11-2
+Removed Pin From Net: NetName=3.3V Pin=R12-1
+Removed Pin From Net: NetName=NETSTAT_STM Pin=R12-2
+Removed Pin From Net: NetName=VBAT Pin=R13-1
+Removed Pin From Net: NetName=RI_SM Pin=R13-2
+Removed Pin From Net: NetName=3.3V Pin=R14-1
+Removed Pin From Net: NetName=RI_STM Pin=R14-2
+Removed Pin From Net: NetName=VBAT Pin=R15-1
+Removed Pin From Net: NetName=PWRSTAT_SM Pin=R15-2
+Removed Pin From Net: NetName=3.3V Pin=R16-1
+Removed Pin From Net: NetName=PWRSTAT_STM Pin=R16-2
+Removed Pin From Net: NetName=VBAT Pin=R17-1
+Removed Pin From Net: NetName=TXD Pin=R17-2
+Removed Pin From Net: NetName=3.3V Pin=R18-1
+Removed Pin From Net: NetName=USART1_RX Pin=R18-2
+Removed Pin From Net: NetName=VBAT Pin=R19-1
+Removed Pin From Net: NetName=RXD Pin=R19-2
+Removed Pin From Net: NetName=3.3V Pin=R20-1
+Removed Pin From Net: NetName=USART1_TX Pin=R20-2
+Change Component Footprint: Designator=R1 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R2 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R3 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R5 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R6 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R7 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R8 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R9 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R10 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R11 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R12 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R13 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R14 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R15 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R16 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R17 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R18 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R19 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Change Component Footprint: Designator=R20 Old Footprint=AXIAL-0.3 New Footprint=1608[0603]
+Added Component: Designator=U2(STM32F410RBT6)
+Added Pin To Net: NetName=NETSTAT_SIM Pin=R11-1
+Added Pin To Net: NetName=VBAT Pin=R11-2
+Added Pin To Net: NetName=NETSTAT_STM Pin=R12-1
+Added Pin To Net: NetName=3.3V Pin=R12-2
+Added Pin To Net: NetName=RI_SM Pin=R13-1
+Added Pin To Net: NetName=VBAT Pin=R13-2
+Added Pin To Net: NetName=RI_STM Pin=R14-1
+Added Pin To Net: NetName=3.3V Pin=R14-2
+Added Pin To Net: NetName=PWRSTAT_SM Pin=R15-1
+Added Pin To Net: NetName=VBAT Pin=R15-2
+Added Pin To Net: NetName=PWRSTAT_STM Pin=R16-1
+Added Pin To Net: NetName=3.3V Pin=R16-2
+Added Pin To Net: NetName=TXD Pin=R17-1
+Added Pin To Net: NetName=VBAT Pin=R17-2
+Added Pin To Net: NetName=USART1_RX Pin=R18-1
+Added Pin To Net: NetName=3.3V Pin=R18-2
+Added Pin To Net: NetName=RXD Pin=R19-1
+Added Pin To Net: NetName=VBAT Pin=R19-2
+Added Pin To Net: NetName=USART1_TX Pin=R20-1
+Added Pin To Net: NetName=3.3V Pin=R20-2
+Added Pin To Net: NetName=OSC_IN Pin=U2-5
+Added Pin To Net: NetName=OSC_OUT Pin=U2-6
+Added Pin To Net: NetName=RESET Pin=U2-7
+Added Pin To Net: NetName=GND Pin=U2-12
+Added Pin To Net: NetName=3V3 Pin=U2-13
+Added Pin To Net: NetName=GND Pin=U2-18
+Added Pin To Net: NetName=3V3 Pin=U2-19
+Added Pin To Net: NetName=PWRSTAT_STM Pin=U2-26
+Added Pin To Net: NetName=RI_STM Pin=U2-27
+Added Pin To Net: NetName=NETSTAT_SIM Pin=U2-28
+Added Pin To Net: NetName=NetC10_2 Pin=U2-30
+Added Pin To Net: NetName=GND Pin=U2-31
+Added Pin To Net: NetName=3V3 Pin=U2-32
+Added Pin To Net: NetName=PWR_CTRL Pin=U2-33
+Added Pin To Net: NetName=RESET_SIMCOM Pin=U2-34
+Added Pin To Net: NetName=I2C4_SDA Pin=U2-35
+Added Pin To Net: NetName=I2C4_SCL Pin=U2-36
+Added Pin To Net: NetName=SWDIO Pin=U2-46
+Added Pin To Net: NetName=GND Pin=U2-47
+Added Pin To Net: NetName=3V3 Pin=U2-48
+Added Pin To Net: NetName=SWCLK Pin=U2-49
+Added Pin To Net: NetName=USART1_TX Pin=U2-58
+Added Pin To Net: NetName=USART1_RX Pin=U2-59
+Added Pin To Net: NetName=I2C1_SCL Pin=U2-61
+Added Pin To Net: NetName=I2C1_SDA Pin=U2-62
+Added Pin To Net: NetName=GND Pin=U2-63
+Added Pin To Net: NetName=3V3 Pin=U2-64
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component U2 STM32F410RBT6

@@ -1,0 +1,22 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: SensorPlatformV3.PcbDoc   23/04/2017  8:15:53 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : SensorPlatformV3.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      15mil (0.381mm)                                           Round             73        PTH        14.93inch (379.32mm)
+T2      30mil (0.762mm)                                           Round             15        PTH        6.32inch (160.59mm)
+T3      35mil (0.899mm)                                           Round             20        PTH        4.57inch (116.01mm)
+T4      39mil (1.001mm)                                           Round             2         PTH        0.67inch (17.02mm)
+T5      41mil (1.049mm)                                           Round             2         PTH        0.19inch (4.85mm)
+T6      47mil (1.199mm)                                           Round             2         PTH        0.21inch (5.45mm)
+T7      55mil (1.4mm)                                             Round             2         PTH        0.74inch (18.81mm)
+T8      59mil (1.501mm)                                           Round             8         PTH        1.90inch (48.27mm)
+T9      126mil (3.2mm)                                            Round             3         PTH        7.56inch (191.92mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              127
+
+Total Processing Time (hh:mm:ss) : 00:00:00

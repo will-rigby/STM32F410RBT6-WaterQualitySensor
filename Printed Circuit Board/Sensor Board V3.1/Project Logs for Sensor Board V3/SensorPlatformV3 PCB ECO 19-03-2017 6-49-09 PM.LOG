@@ -1,0 +1,28 @@
+Added Component: Designator=P4(HDR1X3)
+Added Component: Designator=P5(HDR1X7)
+Added Component: Designator=R21(1608[0603])
+Added Pin To Net: NetName=3V3 Pin=P4-1
+Added Pin To Net: NetName=GND Pin=P4-3
+Added Pin To Net: NetName=GND Pin=P5-7
+Added Pin To Net: NetName=3V3 Pin=R21-2
+Added Pin To Net: NetName=ADC1_13 Pin=P5-3
+Added Pin To Net: NetName=ADC1_13 Pin=U2-10
+Added Net: Name=ADC1_13
+Added Pin To Net: NetName=MX-BW Pin=P5-1
+Added Net: Name=MX-BW
+Added Pin To Net: NetName=MX-PW Pin=P5-2
+Added Net: Name=MX-PW
+Added Pin To Net: NetName=MX-RX Pin=P5-4
+Added Net: Name=MX-RX
+Added Pin To Net: NetName=MX-TX Pin=P5-5
+Added Net: Name=MX-TX
+Added Pin To Net: NetName=MX-VCC Pin=P5-6
+Added Pin To Net: NetName=MX-VCC Pin=U2-39
+Added Net: Name=MX-VCC
+Added Pin To Net: NetName=TEMP Pin=P4-2
+Added Pin To Net: NetName=TEMP Pin=R21-1
+Added Pin To Net: NetName=TEMP Pin=U2-41
+Added Net: Name=TEMP
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component P4 DS18B20
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component P5 LV-MaxSonar EZ4
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component R21 Res1

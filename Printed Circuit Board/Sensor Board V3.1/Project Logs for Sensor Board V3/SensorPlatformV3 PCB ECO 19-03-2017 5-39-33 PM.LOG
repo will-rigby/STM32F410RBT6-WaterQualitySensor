@@ -1,0 +1,7 @@
+Added Component: Designator=X3(Sim Card)
+Added Pin To Net: NetName=1.8V Pin=X3-1
+Added Pin To Net: NetName=GND Pin=X3-2
+Added Pin To Net: NetName=SIM_RST Pin=X3-3
+Added Pin To Net: NetName=SIM_CLK Pin=X3-5
+Added Pin To Net: NetName=SIM_DATA Pin=X3-6
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component X3 Sim Card

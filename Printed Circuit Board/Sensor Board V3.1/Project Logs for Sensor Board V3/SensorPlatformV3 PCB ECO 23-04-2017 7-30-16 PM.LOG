@@ -1,0 +1,11 @@
+Added Component: Designator=D6(1608[0603])
+Added Component: Designator=R12(1608[0603])
+Added Pin To Net: NetName=GND Pin=D6-2
+Added Pin To Net: NetName=FAULT Pin=R12-2
+Added Pin To Net: NetName=FAULT Pin=U2-17
+Added Net: Name=FAULT
+Added Pin To Net: NetName=NetD6_1 Pin=D6-1
+Added Pin To Net: NetName=NetD6_1 Pin=R12-1
+Added Net: Name=NetD6_1
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component D6 Fault
+Added Member To Class: ClassName=SensorPlatformV3 Member=Component R12 Res1

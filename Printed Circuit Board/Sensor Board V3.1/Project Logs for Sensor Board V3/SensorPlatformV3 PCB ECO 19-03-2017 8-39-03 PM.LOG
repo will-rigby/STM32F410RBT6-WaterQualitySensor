@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=SIM_RST Pin=U5-5
+Added Pin To Net: NetName=SIM_CLK Pin=U5-5

@@ -1,0 +1,75 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\s4318884\Downloads\Sensor Board V3.1\SensorPlatformV3.PcbDoc
+Date     : 23/04/2017
+Time     : 8:01:42 PM
+
+WARNING: Multilayer Pads with 0 size Hole found
+   Pad USB1-Mount(3411.22mil,184.291mil) on Multi-Layer
+   Pad USB1-Mount(3188.78mil,184.291mil) on Multi-Layer
+
+Processing Rule : Matched Lengths(Tolerance=150mil) (All)
+Rule Violations :0
+
+Processing Rule : Room SensorPlatformV3 (Bounding Region = (2270mil, 860mil, 6280mil, 2860mil) (InComponentClass('SensorPlatformV3'))
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=1mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=1mil) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=1mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=12mil) (Max=400mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=6mil) (Max=120mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=20mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=8mil) (All),(All)
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-20(3604.016mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-19(3564.646mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-18(3525.276mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-17(3485.905mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-14(3367.795mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-13(3328.425mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-12(3289.055mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-11(3249.685mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-1(2855.984mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-2(2895.354mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-3(2934.724mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-4(2974.095mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-5(3013.465mil,304.449mil) on Top Layer 
+   Violation between Clearance Constraint: (4.843mil < 8mil) Between Track (2826.457mil,353.661mil)(3633.543mil,353.661mil) on Top Layer And Pad U1-10(3210.315mil,304.449mil) on Top Layer 
+Rule Violations :14
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+   Violation between Short-Circuit Constraint: Between Pad USB1-Mount(3395.472mil,184.291mil) on Multi-Layer And Pad USB1-Mount(3411.22mil,184.291mil) on Multi-Layer Location : [X = 5705.529mil][Y = 1119.291mil]
+   Violation between Short-Circuit Constraint: Between Pad USB1-Mount(3204.528mil,184.291mil) on Multi-Layer And Pad USB1-Mount(3188.78mil,184.291mil) on Multi-Layer Location : [X = 5514.47mil][Y = 1119.291mil]
+   Violation between Short-Circuit Constraint: Between Pad USB1-Mount(3192.716mil,65mil) on Top Layer And Pad USB1-Mount(3192.716mil,65mil) on Multi-Layer Location : [X = 5502.717mil][Y = 1000mil]
+   Violation between Short-Circuit Constraint: Between Pad USB1-Mount(3407.284mil,65mil) on Top Layer And Pad USB1-Mount(3407.284mil,65mil) on Multi-Layer Location : [X = 5717.283mil][Y = 1000mil]
+Rule Violations :4
+
+
+Violations Detected : 18
+Time Elapsed        : 00:00:01
