@@ -52,6 +52,14 @@ extern void stm32f410_as_read_conductivity(char* buffer, uint8_t bufferLength) {
 
 }
 
+extern void stm32f410_as_temp_calib_pH(char* temperature, uint8_t bufferLength) {
+	stm32f410_i2c_bitbang_write_bytes(0x63, (uint8_t*) temperature, bufferLength);
+}
+
+extern void stm32f410_as_temp_calib_conductivity(char* temperature, uint8_t bufferLength) {
+	stm32f410_i2c_bitbang_write_bytes(0x64, (uint8_t*)temperature, bufferLength);
+}
+
 extern void stm32f410_as_pH_sleep(void) {
 	stm32f410_i2c_bitbang_write_bytes(0x63, (uint8_t*) "Sleep", 5);
 }

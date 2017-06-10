@@ -21,7 +21,7 @@
 /* Function Definitions -------------------------------------------------------*/
 
 extern void oneWire_init(void) {
-	/* Initialize Timer 3 for keep track of Microseconds */
+	/* Initialize Timer 5 for keep track of Microseconds */
 	__TIM5_CLK_ENABLE()
 	;
 

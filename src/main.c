@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Ac6
+ * @author  William Rigby
  * @version V1.0
- * @date    01-December-2013
- * @brief   Default main function.
+ * @date    20-January-2017
+ * @brief   Water Quality Sensor Main
  ******************************************************************************
  */
 
@@ -94,9 +94,6 @@ int main(void) {
 	/* Data Collection Loop */
 	while (1) {
 
-		/* Restart all Peripherals */
-		uint32_t startTime = HAL_GetTick();
-
 		stm32f410_uart_usart2_transmit("BEGINNING TRANSMISSION\r\n");
 		/* Turn on the SIM5320a  */
 		sim5320a_power_on();
@@ -112,9 +109,46 @@ int main(void) {
 					serverIPAddress);
 
 			/* Get data */
+
+			/* Get Temperature */
+			int16_t temperature[2];
+			char temperatureString[2][10];
+			onewire_read_ds18b20_temp_int16(temperature);
+			getDecStr(temperatureString[0], 10, temperature[0]);
+			getDecStr(temperatureString[1], 10, temperature[1]);
+
+			/* Calibrate Temperature Sensors */
+			char calibStr[20];
+			calibStr[0] = 'T';
+			calibStr[1] = ',';
+			uint8_t i = 0;
+			uint8_t j = 2;
+			while (temperatureString[0][i] != 0) {
+				calibStr[j] = temperatureString[0][i];
+				i++;
+				j++;
+				if (i == 10) {
+					break;
+				}
+			}
+			calibStr[j] = '.';
+			i = 0;
+			while (temperatureString[1][i] != 0) {
+				calibStr[j] = temperatureString[1][i];
+				i++;
+				j++;
+				if (i == 10) {
+					break;
+				}
+			}
+			stm32f410_as_temp_calib_pH(calibStr, j);
+			stm32f410_as_temp_calib_conductivity(calibStr, j);
+
+			/* Read pH */
 			char pH[20]; //read_ph_adc();
 			stm32f410_as_read_pH(pH, 10);
 
+			/* Read Conductivity */
 			char conductivity[20]; //read_conductivity_adc();
 			stm32f410_as_read_conductivity(conductivity, 10);
 			uint8_t ph0 = 1;
@@ -134,27 +168,21 @@ int main(void) {
 				pH[0] = '0';
 			}
 
+			/* Read Depth */
 			uint16_t ultrasonic = read_ultrasonic_adc();
 			char ultrasonicString[6];
 			getDecStr(ultrasonicString, 6, ultrasonic);
 
-			int16_t temperature[2];
-			char temperatureString[2][10];
-			onewire_read_ds18b20_temp_int16(temperature);
-			getDecStr(temperatureString[0], 10, temperature[0]);
-			getDecStr(temperatureString[1], 10, temperature[1]);
-
+			/* Read Signal Quality */
 			uint8_t signalQuality = sim5320a_signal_quality();
 			char sigQual[5];
 			getDecStr(sigQual, 5, signalQuality);
 
+			/* Read Battery Status */
 			uint8_t batteryStatus = sim5320a_battery_percent();
 			char batStat[5];
 			getDecStr(batStat, 5, batteryStatus);
 
-			/* Message = BOARDNAME, DATACOLLECTIONNUMBER, TEMP1.TEMP2, conductivity, pH, range, bat, sig		 */
-			/*                    12                    34    56            78  91     12   34   56 */
-			/* Format and send data over TCP*/
 			/* Create Message */
 			char dataCollectionNumberString[6];
 			getDecStr(dataCollectionNumberString, 6, dataCollectionNumber);
@@ -170,6 +198,7 @@ int main(void) {
 			dataLength += low_mem_string_length(sigQual);
 			dataLength += low_mem_string_length(batStat);
 
+			/* Format and send data over TCP*/
 			if (connect_to_tcp() == 0) {
 
 				/* Send Actual Message */
@@ -209,11 +238,11 @@ int main(void) {
 
 				HAL_Delay(500);
 
-				char messageFromTCPServer[80];
+				char messageFromTCPServer[200];
 				HAL_Delay(10000); // Wait seconds for a reply
 
 				/* Get any messages from TCP Server if there are any */
-				stm32f410_uart_get_usart1_reply(messageFromTCPServer, 80);
+				stm32f410_uart_get_usart1_reply(messageFromTCPServer, 200);
 				process_tcp_commands(messageFromTCPServer);
 
 				/* Close the TCP Server connection */
@@ -237,31 +266,20 @@ int main(void) {
 		}
 		sim5320a_power_off();
 
-		stm32f410_uart_usart2_transmit("Transmission Completed\r\n");
-		char debug[20];
-		getDecStr(debug, 20, delayTime);
-		stm32f410_uart_usart2_transmit(debug);
-
-
 		/* Disable all peripherals and sleep */
 		//HAL_ADC_DeInit(&rangeFinderAdc);
 		stm32f410_as_pH_sleep();
 		stm32f410_as_conductivity_sleep();
-		for (int32_t i = 0; i < delayTime; i++) {
-			HAL_Delay(1000);
-		}
 
-		/* Enter Sleep *//*
-		 stm32f410_rtc_program_wakeup((uint16_t) calculatedDelayInterval);
-		 stm32f410_rtc_enter_stop();*/
+		/* Enter Sleep */
+		stm32f410_rtc_program_wakeup((uint16_t) delayTime);
+		stm32f410_rtc_enter_stop();
 
 		/* On Wake Up */
-		//HAL_Init();
-		//SystemClock_Config();
-		//stm32f410_rtc_exit_stop();
-		//Hardware_Init();
-		stm32f410_uart_usart2_transmit("Transmission Completed\r\n");
-
+		HAL_Init();
+		SystemClock_Config();
+		stm32f410_rtc_exit_stop();
+		Hardware_Init();
 
 	}
 }
@@ -548,7 +566,7 @@ uint8_t process_message_bank_interval(char message[200]) {
 
 			/* Set IP and break from this statement */
 			uint16_t dTime = 0;
-			for (int z = 0; z < low_mem_string_length(delay); z++) {
+			for (uint16_t z = 0; z < low_mem_string_length(delay); z++) {
 				dTime = dTime * 10 + (delay[z] - 48);
 			}
 			delayTime = dTime;

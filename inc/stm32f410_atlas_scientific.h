@@ -25,6 +25,8 @@
 /* External Function Prototypes */
 extern void stm32f410_as_read_pH(char* buffer, uint8_t bufferLength);
 extern void stm32f410_as_read_conductivity(char* buffer, uint8_t bufferLength);
+extern void stm32f410_as_temp_calib_pH(char* temperature, uint8_t bufferLength);
+extern void stm32f410_as_temp_calib_conductivity(char* temperature, uint8_t bufferLength);
 extern void stm32f410_as_pH_sleep(void);
 extern void stm32f410_as_conductivity_sleep(void);
 
